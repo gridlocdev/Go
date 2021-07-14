@@ -1,6 +1,6 @@
 # Introduction to _```Go```_
 
-This file will contain some scattered notes that I took from watching Brad Traversy's tutorial on ```Go```.
+This file will contain some notes that I took from watching Brad Traversy's tutorial on ```Go```.
 
 Table of Contents:
 
@@ -51,10 +51,16 @@ Table of Contents:
     - [Range loops - with index](#range-loops---with-index)
     - [Range loops - without index](#range-loops---without-index)
     - [Ranges with Maps](#ranges-with-maps)
+  - [**10_pointers** - Pointers](#10_pointers---pointers)
+    - [Introduction to Computer Memory](#introduction-to-computer-memory)
+      - [**Components**](#components)
+      - [**Memory Hierarchy**](#memory-hierarchy)
+    - [Programming Instructions to Memory](#programming-instructions-to-memory)
+    - [Get the Memory address for a variable](#get-the-memory-address-for-a-variable)
+    - [Get the value for a Memory Address](#get-the-value-for-a-memory-address)
+    - [Changing the value of a variable by memory address reference](#changing-the-value-of-a-variable-by-memory-address-reference)
 
 ## **00_prelude** - Prelude
-
----
 
 ### Introduction to Go
 
@@ -76,11 +82,7 @@ go env GOPATH
 
 As an example, my Workspace directory in Ubuntu Linux is in ```/home/{{username}}/go``` by default. You can also change where this folder is by editing the Go configuration on your machine if you'd prefer it to be somewhere else.
 
----
-
 ## **01_hello** - Hello World
-
----
 
 ### Main - Package
 
@@ -91,8 +93,6 @@ package main
 ```
 
 The syntax "package" is like a namespace in C#. It's an identifier you add to a particular file to say how it should be referenced by both the Go runtime and other files you create.
-
----
 
 ### fmt package
 
@@ -106,19 +106,13 @@ import (
 
 > Note: When multiple packages are present, Go does not use commas to delimit packages. Instead, each package should generally be on a new line. This also makes auto-additions easier in VSCode's IntelliSense auto-additions.
 
----
-
 ### Declaring a function
 
 Functions are called with "func functionName() {}" like JavaScript
 
----
-
 ### Starting point for a Go program
 
 The "```main```" function is the initial point that the program code starts to execute just like C# and other languages.
-
----
 
 ### Executing a Go program
 
@@ -128,11 +122,7 @@ To execute the go program, run ```go install```. The outputted executable file s
 go install
 ```
 
----
-
 ## **02_vars** - Variables
-
----
 
 ### List of data types
 
@@ -152,8 +142,6 @@ go install
 > **Note: uint - Un-signed Integer**
 >
 > - The "u" in uint stands for **unsigned**, meaning no "sign" can be on the number. This basically means the number can have no negative and can be assigned values 0 and up.
-
----
 
 ### Variable type declarations
 
@@ -178,8 +166,6 @@ const gender = "Male"
 fmt.Println(name_2, age_2)
 ```
 
----
-
 ### Mutability
 
 ```var``` and ```const```
@@ -190,8 +176,6 @@ Just like JavaScript ES6, you can use both _var_ and _const_ to declare variable
 var name = "John"
 const gender = "Male"
 ```
-
----
 
 ### Global Variable Scope
 
@@ -211,8 +195,6 @@ func main() {
 
 > Note: The shorthand syntax ":=" for assigning to a mutable variable using var cannot be used outside a function, which means it cannot be used to assign values to global variables.
 
----
-
 ### Assignment
 
 For ```var```, in addition to the regular syntax there is a shorthand syntax for non-global variables.
@@ -231,11 +213,7 @@ You can also assign muliple values on a single line using the shorthand syntax.
 name, email := "Bob", "Email@example.com"
 ```
 
----
-
 ## **03_packages** - Packages
-
----
 
 ### Import Syntax
 
@@ -249,8 +227,6 @@ import (
 ```
 
 This also makes it easier for IntelliSense to add new packages similar to how it does in Angular.
-
----
 
 ### Creating a Package
 
@@ -267,8 +243,6 @@ Code goes here
 
 */
 ```
-
----
 
 ### Including a custom package
 
@@ -293,13 +267,9 @@ func main() {
 }
 ```
 
----
-
 ## **04_functions** - Functions
 
 Functions are very simple and similar to other languages. Here is the syntax for Go.
-
----
 
 ### Void return types
 
@@ -311,8 +281,6 @@ func doSomething() {
 }
 ```
 
----
-
 ### Typed return types
 
 - The return type is specified after the parameter list, like TypeScript does.
@@ -322,8 +290,6 @@ func addNumbers(num1 int, num2 int) int {
     return num1 + num2
 }
 ```
-
----
 
 ### Calling Functions
 
@@ -339,11 +305,7 @@ func main() {
 }
 ```
 
----
-
 ## **5_arrays_slices** - Arrays and Slices
-
----
 
 ### Array Syntax
 
@@ -366,8 +328,6 @@ fruits[0] = "Orange"
 fruits := [2]string{"Apple","Orange"}
 ```
 
----
-
 ### Slices syntax
 
 > Slices are variable-size, the length can be increased and decreased as needed.
@@ -375,8 +335,6 @@ fruits := [2]string{"Apple","Orange"}
 ```go
 fruitSlice := []string{"Banana","Grape"}
 ```
-
----
 
 ### Other array methods - Length and sub-section
 
@@ -398,11 +356,7 @@ fmt.Println(array[1:3]) /* Outputs "[Two Three]" */
 > [x:3] x = the index to start grabbing values from E.g. ```fruits[1]```
 > [1:x] x = the position of the array to stop grabbing values on, meaning it is not included.
 
----
-
 ## **06_conditionals** - Conditionals
-
----
 
 ### If
 
@@ -418,8 +372,6 @@ if x < y {
 ```
 
 > Note: The ```Printf()``` function is used to print _formatted_ output, meaning it is used when you need to translate text, numbers, or other values before you output the result. There are a number of placeholders to use and each serves a particular purpose or data type which can be found at GoLang's documentation at [GoLang - fmt package documentation link](https://golang.org/pkg/fmt/)
-
----
 
 ### And / Or
 
@@ -442,8 +394,6 @@ if name == "Bob" || name == "John" {
 
 ```
 
----
-
 ### Else if / Else
 
 It's the same syntax as JavaScript, with If, Else if, and Else
@@ -461,8 +411,6 @@ if color == "Red" {
 }
 ```
 
----
-
 ### Switch statement
 
 ```go
@@ -479,11 +427,7 @@ default:
 }
 ```
 
----
-
 ## **07_loops** - Loops
-
----
 
 ### For loops - long and short methods
 
@@ -526,11 +470,7 @@ for i := 1; i <= 100; i++ {
 
 > Note: The **modulus** operator **```%```** represents a _remainder_ in division.
 
----
-
 ## **08_maps** - Maps (Key Value Pairs)
-
----
 
 Maps are another name for key-value pairs.
 
@@ -544,8 +484,6 @@ emails := make(map[string]string)
 ```
 
 > The ```make()``` command initializes and assigns memory for the set of key-value pairs based on the data structure you assign in the "map" parameters.
-
----
 
 ### Create and Update
 
@@ -577,8 +515,6 @@ emails := map[string]string{
 
 > Note: The short syntax does not use the ```make()``` function. Instead, the Go compiler infers values to be made from what is placed into the {} after the initialization keywords.
 
----
-
 ### Read
 
 ```go
@@ -592,8 +528,6 @@ emails := map[string]string{
 // Read an item from a map (Printed to console)
 fmt.Println(emails["Bob"])
 ```
-
----
 
 ### Delete
 
@@ -610,8 +544,6 @@ emails := map[string]string{
 // Delete a key-value pair from the map
 delete(emails["Bob"])
 ```
-
----
 
 ## **09_range** - Ranges
 
@@ -690,4 +622,86 @@ for name, email := range emails {
 for name := range emails {
   fmt.Printf("Name: %s\n", name)
 }
+```
+
+## **10_pointers** - Pointers
+
+> Important: Using pointers is for specific use cases.
+>
+> **Only use them if you know what you are doing.**
+>
+> Go is fast enough and stable enough without the use of pointers; but if someone needs them, they're there.
+
+If you'd like to learn about Pointers, you should know about computer memory first.
+
+### Introduction to Computer Memory
+
+#### **Components**
+
+There are three notable components in a computer for handling memory addresses in code.
+
+| Abbreviation | Name                                 | Description                                                                            |
+| ------------ | ------------------------------------ | -------------------------------------------------------------------------------------- |
+| HDD/SSD      | Hard Disk Drive or Solid State Drive | Slower, but larger device to store large amounts of data                               |
+| RAM          | Random Access Memory                 | Rapidly accessed temporary data storage that is used for computing operations          |
+| CPU          | Central Processing Unit              | A component that executes computational instructions items contained in the RAM memory |
+
+Each of these three has a unique job when it comes to running programs, and they work together to execute things on the computer.
+
+#### **Memory Hierarchy**
+
+Memory comes in a hierarchy, ranging from binary to the full set of data present in the code and on your machine:
+
+- A bit can represent values 0 or 1
+- There are 8 bits in a byte (e.g. 00000000)
+- Every byte has its own memory address, which itself is made up of many bytes as letters and numbers.
+  - Memory addresses are a fixed length set of letters and numbers, which represent a position of temporary in-process data on the computing device's RAM (Random-Access Memory). The addresses are sent to CPU to execute instructions on the data stored in those addresses.
+  - The amount of storage a processor is able to access is represented by the number before the bitrate of the system: 8-bit, 16-bit, 32-bit, 64-bit processors are those that are able to handle a corresponding number of memory addresses for data in RAM.
+
+     > | Processor | Number of Bits | Number of Addresses it can handle | Total Memory    |
+     > | --------- | -------------- | --------------------------------- | --------------- |
+     > | 8-bit     | 2^8            | 256                               | 256 bytes       |
+     > | 16-bit    | 2^16           | 65536                             | 65.5 Kilo-bytes |
+     > | 32-bit    | 2^32           | 4294967296                        | 4.3 Giga-bytes  |
+     > | 64-bit    | 2^64           | 1.844674407×10¹⁹                  | 18 Exa-bytes    |
+
+### Programming Instructions to Memory
+
+The instructions represented by code have to be eventually reduced to bit-wise operations. The Go compiler translates code to C code, which then is translated to Assembly, which is then translated to binary instructions. So, for the most part, regular programs in Go don't have much of a reason to skip logical layers of compilation to directly interact with memory since these instructions are handled in the abstraction between these layers.
+
+I would advise for most developers to never use pointers in Go, as not only are they not needed, but using them can be dangerous if you don't know what you're doing. The language is multi-threaded, and very fast so there aren't nearly any performance gains by pointing at memory directly.
+
+The risks entail not only taking up memory unneccessarily, but by accessing or modifying potentially incorrect or invalid memory values you can create memory leaks in the system that can lead to data corruption or other system-wide memory loss.
+
+The below syntax is safe to use in Go, but because of the aformentioned reasons, proceed with caution.
+
+### Get the Memory address for a variable
+
+```go
+// Use & to get the memory address of the variable
+
+a := 5
+b := &a // Returns e.g. 0xc0000123a5
+```
+
+### Get the value for a Memory Address
+
+```go
+a := 5
+b := &a
+
+// Use * to read value from pointer to memory address
+
+fmt.Println(*b) // Returns "5"
+```
+
+### Changing the value of a variable by memory address reference
+
+```go
+a := 5
+b := &a
+
+// Change val with pointer 
+*b = 10
+fmt.Println(a)
 ```
